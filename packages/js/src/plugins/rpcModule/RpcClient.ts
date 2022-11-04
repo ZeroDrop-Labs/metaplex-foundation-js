@@ -166,7 +166,9 @@ export class RpcClient {
       confirmOptions,
       signers
     );
-
+    if (this.metaplex?.onSignature) {
+      await this.metaplex.onSignature(signature, transaction);
+    }
     const confirmResponse = await this.confirmTransaction(
       signature,
       blockhashWithExpiryBlockHeight,
