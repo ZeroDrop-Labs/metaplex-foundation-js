@@ -95,7 +95,7 @@ export class RpcClient {
 
     // Identity signers.
     for (let i = 0; i < identities.length; i++) {
-      await identities[i].signTransaction(transaction);
+      transaction = await identities[i].signTransaction(transaction);
     }
 
     return transaction;
@@ -363,7 +363,7 @@ export class RpcClient {
     const resolvedError = program.errorResolver(error);
 
     return resolvedError
-      ? new ParsedProgramError(program, resolvedError)
+      ? new ParsedProgramError(program, resolvedError, error.logs)
       : new UnknownProgramError(program, error);
   }
 }

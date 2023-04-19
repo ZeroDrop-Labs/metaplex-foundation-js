@@ -126,9 +126,10 @@ test('[candyMachineModule] nftGate guard: it forbids minting when the payer does
   });
 
   // But that sent his NFT to another wallet.
-  await mx.nfts().send({
-    mintAddress: payerNft.address,
-    fromOwner: payer,
+  await mx.nfts().transfer({
+    nftOrSft: payerNft,
+    authority: payer,
+    fromOwner: payer.publicKey,
     toOwner: Keypair.generate().publicKey,
   });
 
@@ -286,7 +287,7 @@ test('[candyMachineModule] nftGate guard with bot tax: it charges a bot tax when
   );
 
   // Then we expect a bot tax error.
-  await assertThrows(t, promise, /Candy Machine Bot Tax/);
+  await assertThrows(t, promise, /CandyMachineBotTaxError/);
 
   // And the payer was charged a bot tax.
   const payerBalance = await mx.rpc().getBalance(payer.publicKey);
