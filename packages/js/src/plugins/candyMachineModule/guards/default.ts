@@ -21,6 +21,7 @@ import {
   NftPaymentGuardMintSettings,
   NftPaymentGuardSettings,
 } from './nftPayment';
+import { ProgramGateGuardSettings } from './programGate';
 import { RedeemedAmountGuardSettings } from './redeemedAmount';
 import { SolPaymentGuardSettings } from './solPayment';
 import { StartDateGuardSettings } from './startDate';
@@ -31,6 +32,14 @@ import {
 import { TokenBurnGuardSettings } from './tokenBurn';
 import { TokenGateGuardSettings } from './tokenGate';
 import { TokenPaymentGuardSettings } from './tokenPayment';
+import {
+  FreezeSolPaymentGuardRouteSettings,
+  FreezeSolPaymentGuardSettings,
+} from './freezeSolPayment';
+import {
+  FreezeTokenPaymentGuardRouteSettings,
+  FreezeTokenPaymentGuardSettings,
+} from './freezeTokenPayment';
 import { Option } from '@/utils';
 
 /**
@@ -53,6 +62,9 @@ export type DefaultCandyGuardSettings = CandyGuardsSettings & {
   nftGate: Option<NftGateGuardSettings>;
   nftBurn: Option<NftBurnGuardSettings>;
   tokenBurn: Option<TokenBurnGuardSettings>;
+  freezeSolPayment: Option<FreezeSolPaymentGuardSettings>;
+  freezeTokenPayment: Option<FreezeTokenPaymentGuardSettings>;
+  programGate: Option<ProgramGateGuardSettings>;
 };
 
 /**
@@ -75,6 +87,9 @@ export type DefaultCandyGuardMintSettings = CandyGuardsMintSettings & {
   nftGate: Option<NftGateGuardMintSettings>;
   nftBurn: Option<NftBurnGuardMintSettings>;
   // tokenBurn: no mint settings
+  // freezeSolPayment: no mint settings
+  // freezeTokenPayment: no mint settings
+  // programGate: no mint settings
 };
 
 /**
@@ -97,6 +112,9 @@ export type DefaultCandyGuardRouteSettings = CandyGuardsRouteSettings & {
   // nftGate: no route settings
   // nftBurn: no route settings
   // tokenBurn: no route settings
+  freezeSolPayment: FreezeSolPaymentGuardRouteSettings;
+  freezeTokenPayment: FreezeTokenPaymentGuardRouteSettings;
+  // programGate: no route settings
 };
 
 /** @internal */
@@ -117,6 +135,9 @@ export const defaultCandyGuardNames: string[] = [
   'nftGate',
   'nftBurn',
   'tokenBurn',
+  'freezeSolPayment',
+  'freezeTokenPayment',
+  'programGate',
 ];
 
 /** @internal */
